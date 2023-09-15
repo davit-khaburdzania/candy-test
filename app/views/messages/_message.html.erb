@@ -1,0 +1,6 @@
+<div class="sender-<%= message.sender %>">
+  <div class="message-box msg-<%= message.sender %> " >
+    <h6 class="name"> <%= message.created_at.to_formatted_s(:long) %> </h6>
+    <%= message.content %>
+  </div>
+</div>

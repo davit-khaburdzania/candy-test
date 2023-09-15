@@ -1,0 +1,7 @@
+<div class="message-form">
+  <%= form_for(@message, remote: true, class: "d-flex" ) do |f| %>
+    <%= f.hidden_field :conversation_id, value: @message.conversation_id %>
+    <%= f.text_area :content, id: 'chat-text', class: "form-control msg-content", autocomplete: 'off' %>
+    <%= f.submit data: { disable_with: false }, class: "btn btn-primary" %>
+  <% end %>
+</div>

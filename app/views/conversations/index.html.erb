@@ -1,0 +1,26 @@
+<div class="page-container">
+  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+  <div class="row">
+    <div class="col-md-3">
+      <h4> Conversations </h4>
+      <%= link_to 'New Conversation', root_path, class: "btn btn-light" %>
+      <div>
+        <%= turbo_stream_from "conversations" %>
+        <div id="conversations">
+          <%= render @conversations, current_conversation: @conversation || {} %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 bg-dark text-light conversation-container">
+      <div class"messages-container">
+        <% if @conversation.id %>
+          <%= turbo_stream_from @conversation %>
+          <div id="messages">
+            <%= render @conversation.messages %>
+          </div>
+        <% end %>
+      </div>
+      <%= render partial: 'messages/new_message_form' %>
+    </div>
+  </div>
+</div>
