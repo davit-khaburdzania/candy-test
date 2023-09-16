@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     if @conversation.blank?
       @conversation = current_user.conversations.create(name: @message.content[0, 30])
       @message.conversation = @conversation
-      flash.notice = "Conversation created"
+      CreateConversationJob.set(wait: 10.seconds).perform_later(current_user.id)
     end
 
     @message.save

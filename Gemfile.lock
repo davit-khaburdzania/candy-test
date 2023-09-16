@@ -79,6 +79,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
+    connection_pool (2.2.5)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -204,6 +205,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sidekiq (6.4.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -252,6 +257,7 @@ DEPENDENCIES
   redis (~> 4.0)
   ruby-openai
   sassc-rails
+  sidekiq
   sprockets-rails
   stimulus-rails
   turbo-rails

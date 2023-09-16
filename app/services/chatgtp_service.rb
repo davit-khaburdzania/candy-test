@@ -1,22 +1,11 @@
 class ChatgtpService
-  def initialize(message)
+  def initialize(message = nil)
     @message = message
     @openai_client = OpenAI::Client.new
   end
 
   def call
-    response = @openai_client.chat(
-      parameters: {
-        model: 'gpt-3.5-turbo',
-        messages: generate_messages,
-        temperature: 0.7
-      }
-    )
-
-    puts(generate_messages)
-    puts(response)
-
-    response.dig('choices', 0, 'message', 'content')
+    call_chatgtp(generate_messages)
   end
 
   def generate_messages
@@ -30,5 +19,19 @@ class ChatgtpService
     else
       [current_message]
     end
+  end
+
+  def call_chatgtp(messages)
+    response = @openai_client.chat(
+      parameters: {
+        model: 'gpt-3.5-turbo',
+        messages: messages,
+        temperature: 0.7
+      }
+    )
+
+    puts(response)
+
+    response.dig('choices', 0, 'message', 'content')
   end
 end
