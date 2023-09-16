@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   root 'conversations#index'
   resources :conversations
   resources :messages
+
+  resources :notifications, only: [] do
+    member do
+      post :set_seen
+    end
+  end
 end
